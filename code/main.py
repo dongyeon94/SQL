@@ -1,10 +1,10 @@
 from collections import *
 import pymysql
 connection = pymysql.connect(                               ###여기부터
-host = 'astronaut.snu.ac.kr',
-user = 'BDE-2018-04',
-password = '384029749310',
-db = 'BDE-2018-04',
+host = '****************',
+user = '**********',
+password = '*********',
+db = '******',
 charset = 'utf8',                                          ### 여기 까지 내 db정보
 cursorclass = pymysql.cursors.DictCursor)
 
