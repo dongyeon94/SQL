@@ -1,12 +1,13 @@
 from collections import *
 import pymysql
-connection = pymysql.connect(                               ###여기부터
-host = '****************',
-user = '**********',
-password = '*********',
-db = '******',
-charset = 'utf8',                                          ### 여기 까지 내 db정보
-cursorclass = pymysql.cursors.DictCursor)
+connection = pymysql.connect(                               ###   ---------
+host = '****************',                                  ###   database server url
+user = '**********',                                        ###   database server user id
+password = '*********',                                     ###   database server user password
+db = '******',                                              ###   database name(scema name)
+                                                            ###   ----------    
+charset = 'utf8',                                             
+cursorclass = pymysql.cursors.DictCursor)                  ## cusor 
 
 
 def mainframe():
@@ -15,10 +16,11 @@ def mainframe():
     while True:
         action = input('Select your action:')
 
-        #### 1번 function
+        #### 1 function
         if action == '1':
             try:
-                with connection.cursor() as cursor:
+                with connection.cursor() as cursor:   ## cursor handling sql
+                    
                     sql = 'select * from building'
                     cursor.execute(sql)
                     all_building = cursor.fetchall()
@@ -40,10 +42,12 @@ def mainframe():
 
             except:
                 print('error')
-        ##### 2번 function
+                
+                
+        ##### 2 function
         if action == '2':
             try:
-                with connection.cursor() as cursor:  ## 이게 커서 내용임 아래 접근을 할 수 있게 핸들링 해줌
+                with connection.cursor() as cursor:  ## cursor handling sql
                     sql = 'select p.performance_id , p.performance_name, p.performance_type, p.price ,count(seat.audience_id) as booked ' + \
                           'from performance p  left join seat using(performance_id) group by (p.performance_id) '
 
